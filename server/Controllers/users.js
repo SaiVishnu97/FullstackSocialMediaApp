@@ -5,7 +5,7 @@ import User  from "../models/user.js";
 export const getUser=async (req,res)=>{
 
     try{
-        const id=req.params;
+        const {id}=req.params;
         const user= await User.findById(id);
         res.status(200).json(user);
     }catch(err)
@@ -17,9 +17,8 @@ export const getUser=async (req,res)=>{
 export const getUserFriends=async (req,res)=>{
 
     try{
-        const id=req.params;
+        const {id}=req.params;
         const user=await User.findById(id);
-
         const friends=await Promise.all(
             user.friends.map((id)=>User.findById(id)));
         const formattedFriends = friends.map(
@@ -41,7 +40,6 @@ export const addRemoveFriend=async (req,res,next)=>{
      const {id, friendid}=req.params;
      const user=await User.findById(id);
      const friend=await User.findById(friendid);
-
      if(user.friends.includes(friendid))
      {
         user.friends = user.friends.filter(id=>id!==friendid);
@@ -50,7 +48,7 @@ export const addRemoveFriend=async (req,res,next)=>{
      }
      else
      {
-        user.friend.push(friendid);
+        user.friends.push(friendid);
         friend.friends.push(id);
      }
      await user.save();

@@ -32,10 +32,22 @@ const UserSchema=new mongoose.Schema({
         type: Array,
         default: []
     },
-    location: String,
-    occupation: String,
-    viewedprofiles: Number,
-    impressions: Number
+    location: {
+        type: String,
+        default: 'Some Where in India'
+    },
+    occupation: {
+        type: String,
+        default: 'Some Random Work'
+    },
+    viewedprofiles: {
+        type: Number,
+        default: 0
+    },
+    impressions:{
+        type: Number,
+        default: 0
+    },
 },{timestamps:true});
 
 const User=mongoose.model('users',UserSchema);

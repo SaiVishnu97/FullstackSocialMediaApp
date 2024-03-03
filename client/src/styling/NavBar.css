@@ -1,0 +1,40 @@
+.NavBar
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    border-radius: 5px;
+    background-color: white;
+}
+.NavBarflex-1
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+.NavBarflex-2
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    width: 300px;
+}
+
+@media (max-width: 768px) {
+    .NavBar {
+      flex-direction: column;
+      padding: 10px;
+    }
+  
+    .NavBarflex-1 {
+      margin-bottom: 10px;
+    }
+  
+    .NavBarflex-2 {
+      width: 100%;
+      justify-content: space-around;
+    }
+  }

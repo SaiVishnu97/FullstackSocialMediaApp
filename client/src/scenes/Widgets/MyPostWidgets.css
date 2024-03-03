@@ -1,0 +1,30 @@
+.MyPostCard
+{
+    border-radius: 10%;
+    width: 450px;
+    height: 'fit-content';
+    margin-top: 30px;
+    box-sizing: content-box;
+    border-radius: 10px;
+    background-color: rgb(255,255,255);
+}
+.firsthalf
+{
+    display: flex;
+    justify-content: space-between;
+    box-sizing: content-box;
+    padding: 20px;
+}
+.secondhalf
+{
+    display: flex;
+    justify-content: space-between;
+    box-sizing: content-box;
+    padding: 20px;
+}
+
+img{
+    border-radius: 50%;
+    height: 70px;
+    width: 70px;
+}

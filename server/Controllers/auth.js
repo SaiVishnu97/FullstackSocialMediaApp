@@ -1,6 +1,9 @@
 import jwt from "jsonwebtoken";
 import bcrypt from 'bcrypt';
-import User from '../models/user.js';
+import User from '../models/user.js'
+import {v4 as uuid4} from 'uuid'
+import fs from 'fs'
+import path from "path";
 
 export const register=async (req,res)=>
 {
@@ -11,14 +14,19 @@ export const register=async (req,res)=>
         email,
         password,
         occupation,
-        picturepath,
         friends,
         location
     } =req.body;
 
     const salt= await bcrypt.genSalt();
     const hashedpassword=await bcrypt.hash(password,salt);
-
+    const filenamerandstring=uuid4();
+    if(req.file){
+    const dirname=path.dirname(req.file.path);
+    const ext=(req.file.originalname).split('.')[1];
+    var picturepath=`assets/${filenamerandstring}.${ext}`;
+    fs.renameSync(`${req.file.path}`,`${dirname}/${filenamerandstring}.${ext}`);
+    }
     const newUser=new User({
         firstname,
         lastname,
@@ -32,6 +40,8 @@ export const register=async (req,res)=>
         impressions: Math.floor(Math.random()*10000)
     });
     const saveduser= await newUser.save();
+    res.status(201).json(saveduser);
+
     }catch(err){
     res.status(500).json({errormessage: err.message});
     }

@@ -10,6 +10,6 @@ router.get('/:id',verifyToken,getUser);
 
 router.get('/:id/friends',verifyToken,getUserFriends);
 
-router.patch(':id/friendid',verifyToken,addRemoveFriend);
+router.patch('/:id/:friendid',verifyToken,addRemoveFriend);
 
 export default router;
