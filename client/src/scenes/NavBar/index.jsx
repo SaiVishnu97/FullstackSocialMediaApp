@@ -30,9 +30,9 @@ const NavBar = () => {
 
     <div className='NavBar'>
       <div className='NavBarflex-1'>
-        <h2 style={{color:'rgb(0,127,255)',fontSize:'30px',margin:'10px'}}>SocialMediaApp</h2>
+        <h2 style={{color:'rgb(0,127,255)',fontSize:'25px',margin:'10px'}}>SocialMediaApp</h2>
         <InputBase placeholder="Search..." sx={{
-            width: "70%",
+            width: "50%",
             backgroundColor: 'rgb(240,240,240)',
             borderRadius: "2rem",
             padding: "1rem 2rem"}}/>

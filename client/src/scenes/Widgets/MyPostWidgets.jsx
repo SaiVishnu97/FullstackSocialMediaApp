@@ -59,7 +59,12 @@ const MyPostWidgets = ({picturepath}) => {
             borderRadius: "2rem",
             padding: "1rem 2rem"}}/>
         </div>
+        {image&&<div className='MyPostImage'>
+          <img src={URL.createObjectURL(image)}/>
+          </div>
+        }
         <div className='secondhalf'>
+          
         <input 
           accept="image/*" 
           style={{ display: 'none' }} 
@@ -76,10 +81,18 @@ const MyPostWidgets = ({picturepath}) => {
           <ImageIcon  sx={{ fontSize: 30 }}/>
           </IconButton>
         </label>
+       {image&&<Button 
+          variant="contained" 
+          onClick={()=>setImage(null)}
+          sx={{width:'80px'}}
+        >
+          Cancel upload
+        </Button>}
         <Button 
           variant="contained" 
           onClick={handlePost}
           sx={{width:'100px'}}
+          disabled={!(post||image)}
         >
           POST
         </Button>

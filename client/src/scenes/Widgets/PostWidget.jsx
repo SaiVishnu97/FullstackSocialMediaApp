@@ -7,9 +7,10 @@ import {
     ShareOutlined,
   } from "@mui/icons-material";
 import { IconButton,Typography } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './PostWidget.css'
 import Friend from 'components/Friend';
+import { setPost } from 'state';
 const PostWidget = ({
     postid,
     postuserid,
@@ -21,12 +22,35 @@ const PostWidget = ({
     likes,
     comments
 }) => {
+    const dispatch=useDispatch();
     const [isComments,setIsComments]=React.useState(false);
     const token = useSelector((state) => state.token);
     const loggedInUserId = useSelector((state) => state.user._id);
     const isLiked = Boolean(likes[loggedInUserId]);
     const likeCount = Object.keys(likes).length;
     
+    const patchLike= async()=>{
+      try {
+        console.log(loggedInUserId);
+        const response=await fetch(`${process.env.REACT_APP_BACKEND_URL}/posts/${postid}/like`,{
+          headers:{
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
+          },
+          method: 'PATCH',
+          body: JSON.stringify({userid: loggedInUserId})
+        });
+        console.log(response);
+        const data= await response.json();
+        console.log(data);
+        dispatch(setPost({post:data}));
+      } catch (error) {
+        console.log(error);
+        alert('Oops something went wrong when you are liking the post',error.message);
+      }
+     
+    }
+
   return (
     <div className='postcard'>
         <Friend _id={loggedInUserId} token={token} friendid={postuserid} subtitle={location} 
@@ -39,7 +63,7 @@ const PostWidget = ({
         </div>
         <div className='postcardthirdhalf'>
         <div style={{display:'flex',justifyContent:'flex-start' ,alignItems:'center'}}>
-        <IconButton >
+        <IconButton onClick={patchLike}>
               {isLiked ? (
                 <FavoriteOutlined sx={{ color: 'black' }} />
               ) : (
