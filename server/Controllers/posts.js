@@ -68,10 +68,8 @@ export const likePost= async(req,res)=>{
     try{
         const {id} = req.params;
         const {userid} = req.body;
-        console.log(userid);
         const post = await Post.findById(id);
         const isLiked= post.likes.get(userid);
-        console.log(post);
         if(isLiked)
         {
             post.likes.delete(userid);
@@ -79,7 +77,6 @@ export const likePost= async(req,res)=>{
         else
             post.likes.set(userid,true);
 
-        console.log(post.likes);
         const updatedPost = await Post.findByIdAndUpdate(
             id,
             {likes: post.likes},
