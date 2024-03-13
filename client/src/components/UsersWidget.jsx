@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 const UsersWidget = ({picturepath,userId}) => {
 
 const [user,setUser]=React.useState(null);
+const actualuser=useSelector(state=>state.user);
 const token=useSelector((state)=>state.token)
     const getUser=async ()=>
     {
@@ -28,9 +29,7 @@ const token=useSelector((state)=>state.token)
     }
     React.useEffect(()=>{
       getUser();
-      console.log('Executng useEffect')
-    },[]);
-    console.log(user);
+    },[actualuser.friends.length]);
     if (!user) {
       return null;
     }

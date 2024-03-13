@@ -1,7 +1,6 @@
 import React from 'react'
 import {
     ChatBubbleOutlineOutlined,
-    Comment,
     FavoriteBorderOutlined,
     FavoriteOutlined,
     ShareOutlined,

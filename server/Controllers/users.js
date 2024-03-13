@@ -70,3 +70,35 @@ export const addRemoveFriend=async (req,res,next)=>{
         res.status(404).json({message: err.message})
     }
 }
+
+export const userPatternMatching= async (req,res)=>
+{
+    try{
+        const {pattern}=req.query;
+        console.log(pattern);
+        console.log(req.user.id);
+
+        if(!pattern)
+            throw new Error('Empty pattern cannot be given');
+        let [firstpatt,secondpatt]=pattern.split(' ');
+        console.log(secondpatt);
+        if(!secondpatt)
+            secondpatt=firstpatt;
+        console.log(secondpatt);
+
+        const userarraynames= await User.find({$or:[{firstname:new RegExp(`${firstpatt}`,'i')},{lastname: new RegExp(`${secondpatt}`,'i')}]}).select({firstname:1,lastname:1});
+        console.log(userarraynames);
+        const resarrnames=userarraynames.map((obj,ind)=>{
+             return {
+                fullname:`${obj.firstname} ${obj.lastname}`,
+                _id:obj._id
+             }
+        })
+        res.status(200).json({resarrnames: resarrnames});
+        console.log(resarrnames);
+    }catch(err)
+    {
+        res.status(404).json({message: err.message})
+    }
+    
+}

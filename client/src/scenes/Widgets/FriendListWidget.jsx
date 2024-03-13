@@ -24,7 +24,6 @@ const FriendListWidget = ({userid}) => {
     const dispatch=useDispatch();
     const token = useSelector((state) => state.token);
     const friends = useSelector((state) => state.user.friends);
-    console.log(friends);
     React.useEffect(()=>{
 
     const setFunctionFriends=async ()=>{    
@@ -38,7 +37,6 @@ const FriendListWidget = ({userid}) => {
             if(!response.ok)
                 throw new Error(response.statusText);
             const data=await response.json();
-            console.log(data);
             dispatch(setFriends({friends:data}));
         }catch(err)
         {

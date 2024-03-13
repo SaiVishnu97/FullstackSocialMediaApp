@@ -5,10 +5,18 @@ import MyPostWidgets from 'scenes/Widgets/MyPostWidgets'
 import { useSelector } from 'react-redux'
 import PostsWidget from 'scenes/Widgets/PostsWidget'
 import FriendListWidget from 'scenes/Widgets/FriendListWidget'
+import { Navigate } from 'react-router-dom'
 
 const HomePage = () => {
 
-  const {_id:userId,picturepath}=useSelector(state=>state.user);
+  const currentstateuser=useSelector(state=>state.user);
+  const token=useSelector(state=>state.token);
+  console.log(currentstateuser)
+  if(!currentstateuser||!token)
+  {
+    return <Navigate to='/'></Navigate>
+  }
+  const {_id:userId,picturepath} =currentstateuser;
   console.log(userId,picturepath);
   return (
     <div>
