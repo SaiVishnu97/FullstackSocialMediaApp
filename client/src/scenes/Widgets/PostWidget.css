@@ -14,13 +14,15 @@
 .postcardfirsthalf{
     display: flex;
     justify-content: space-around;
+    cursor: pointer;
+    margin-bottom: 20px;
 }
 .postcardsecondhalf{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 10%;
+    /* padding: 10%; */
 }
 .postcardsecondhalf img{
 height: 250px;

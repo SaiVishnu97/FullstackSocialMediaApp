@@ -46,10 +46,10 @@ const token=useSelector((state)=>state.token)
         </div>
         <div className='location'>
         <div>  <LocationOnOutlinedIcon/>
-        <small style={{marginLeft:'10px'}}>Lives in : Default</small>
+        <small style={{marginLeft:'10px'}}>Lives in : {user.location}</small>
         </div>    
         <div>  <WorkOutlineIcon/>
-        <small style={{marginLeft:'10px'}}>Occupation : Default</small>
+        <small style={{marginLeft:'10px'}}>Occupation : {user.occupation}</small>
         </div>  
         
         </div>

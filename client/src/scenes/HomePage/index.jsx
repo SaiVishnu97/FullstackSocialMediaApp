@@ -11,13 +11,11 @@ const HomePage = () => {
 
   const currentstateuser=useSelector(state=>state.user);
   const token=useSelector(state=>state.token);
-  console.log(currentstateuser)
   if(!currentstateuser||!token)
   {
     return <Navigate to='/'></Navigate>
   }
   const {_id:userId,picturepath} =currentstateuser;
-  console.log(userId,picturepath);
   return (
     <div>
       <NavBar/>

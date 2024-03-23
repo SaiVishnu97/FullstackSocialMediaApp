@@ -15,7 +15,6 @@ const ProfilePage = () => {
   const token=useSelector(state=>state.token);
   const {userid}=useParams();
   const [user,setUser]=useState(null);
-  console.log(userid);
   const getUser=async ()=>
   {
     try {
@@ -33,7 +32,7 @@ const ProfilePage = () => {
   }
   useEffect(()=>{
     getUser();
-  },[])
+  },[userid])
   if(!token)
   {
     return <Navigate to='/'></Navigate>
@@ -51,7 +50,7 @@ const ProfilePage = () => {
     <PostsWidget userid={userid} isProfile={true}/>
     </div>
     <div>
-      <FriendListWidget userid={userid}/>
+      <FriendListWidget userid={userid} isAnotherUser={true}/>
     </div>
       </div>  
       

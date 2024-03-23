@@ -67,7 +67,7 @@ a {
 a:hover {
   background-color: lightgrey;
 }
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     .NavBar {
       flex-direction: column;
       padding: 10px;

@@ -20,10 +20,11 @@ const friendcss={
     marginTop: '30px',
     width :'300px'
 }
-const FriendListWidget = ({userid}) => {
+const FriendListWidget = ({userid,isAnotherUser=false}) => {
     const dispatch=useDispatch();
     const token = useSelector((state) => state.token);
     const friends = useSelector((state) => state.user.friends);
+    const [otheruserfriends,setOtherUserFriends]=React.useState([]);
     React.useEffect(()=>{
 
     const setFunctionFriends=async ()=>{    
@@ -37,24 +38,34 @@ const FriendListWidget = ({userid}) => {
             if(!response.ok)
                 throw new Error(response.statusText);
             const data=await response.json();
-            dispatch(setFriends({friends:data}));
+            if(isAnotherUser)
+                setOtherUserFriends(data);
+            else
+                dispatch(setFriends({friends:data}));
         }catch(err)
         {
             alert(err);
         }
     }
     setFunctionFriends();
-    },[])
+    },[friends.length,userid])
   return (
     <div style={friendwidgetstyle}>
 
         <h5 style={{marginTop:'10px'}}>FriendList</h5>
-       <div style={friendcss} >
+        
+        {isAnotherUser&&<div style={friendcss} >
+            {otheruserfriends.map((friend)=>{
+          return  (<Friend key={friend._id} _id={userid} token={token} friendid={friend._id} subtitle={friend.location} 
+            name={`${friend.firstname} ${friend.lastname}`} userpicturepath={friend.picturepath} isAnotherUser={isAnotherUser}/>);
+        })}
+        </div>}
+        {!isAnotherUser&&<div style={friendcss} >
         {friends.map((friend)=>{
           return  (<Friend key={friend._id} _id={userid} token={token} friendid={friend._id} subtitle={friend.location} 
-            name={`${friend.firstname} ${friend.lastname}`} userpicturepath={friend.picturepath} />);
+            name={`${friend.firstname} ${friend.lastname}`} userpicturepath={friend.picturepath}  />);
         })}
-        </div>
+        </div>}
     </div>
   )
 }

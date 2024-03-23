@@ -31,7 +31,7 @@ const PostsWidget = ({userid,isProfile=false}) => {
           } else {
             getPosts();
           }
-    },[]);
+    },[userid]);
   if(Array.isArray(posts)===false)
   return null;
   return (
