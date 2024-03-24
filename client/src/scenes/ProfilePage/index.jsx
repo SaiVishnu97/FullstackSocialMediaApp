@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import NavBar from 'scenes/NavBar'
 import UsersWidget from 'components/UsersWidget'
-import MyPostWidgets from 'scenes/Widgets/MyPostWidgets'
 import { useSelector } from 'react-redux'
 import PostsWidget from 'scenes/Widgets/PostsWidget'
 import FriendListWidget from 'scenes/Widgets/FriendListWidget'
