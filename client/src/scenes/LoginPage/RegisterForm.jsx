@@ -34,7 +34,7 @@ const Form = ({setPageLogin}) => {
       formData.append('picture', values.profileimage);
       
       console.log(formData);
-      const response=await axios.post(`${REACT_APP_BACKEND_URL}/auth/register`, formData, {
+      const response=await axios.post(`${process.env.REACT_APP_BACKEND_URL}/auth/register`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
