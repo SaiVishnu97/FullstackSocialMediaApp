@@ -41,7 +41,6 @@ const PostWidget = ({
         });
         console.log(response);
         const data= await response.json();
-        console.log(data);
         dispatch(setPost({post:data}));
       } catch (error) {
         console.log(error);
@@ -64,22 +63,22 @@ const PostWidget = ({
         <div style={{display:'flex',justifyContent:'flex-start' ,alignItems:'center'}}>
         <IconButton onClick={patchLike}>
               {isLiked ? (
-                <FavoriteOutlined sx={{ color: 'black' }} />
+                <FavoriteOutlined sx={{ color: 'var(--text-color)' }} />
               ) : (
-                <FavoriteBorderOutlined />
+                <FavoriteBorderOutlined sx={{ color: 'var(--text-color)' }}/>
               )}
             </IconButton>
             <Typography>{likeCount}</Typography>
         </div>
         <div style={{display:'flex',justifyContent:'flex-start',alignItems:'center'}}>
         <IconButton onClick={() => setIsComments(!isComments)}>
-              <ChatBubbleOutlineOutlined />
+              <ChatBubbleOutlineOutlined sx={{ color: 'var(--text-color)' }}/>
             </IconButton>
             <Typography>{comments.length}</Typography>
         </div>
         <div>
         <IconButton>
-          <ShareOutlined />
+          <ShareOutlined sx={{ color: 'var(--text-color)' }}/>
         </IconButton>
         </div>
         </div>

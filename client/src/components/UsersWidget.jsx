@@ -29,7 +29,7 @@ const token=useSelector((state)=>state.token)
     }
     React.useEffect(()=>{
       getUser();
-    },[actualuser.friends.length]);
+    },[actualuser.friends.length,userId]);
     if (!user) {
       return null;
     }
@@ -37,7 +37,7 @@ const token=useSelector((state)=>state.token)
 
     <div className='card-user'>
         <div className='userdp'>
-            <img src={`http://localhost:3001/${picturepath}`}></img>
+            <img src={`${process.env.REACT_APP_BACKEND_URL}/${picturepath}`}></img>
             <div style={{marginLeft:'10px',marginRight:'20px'}}>
                 <h6>{`${user.firstname} ${user.lastname}`}</h6>
                 {user.friends&&<small>Friends: {user.friends.length}</small>}

@@ -7,8 +7,9 @@
     padding: 20px;
     margin-right: 30px;
     margin-top: 30px;
-    background-color: rgb(255,255,255);
-    
+    color: var(--text-color);
+    background-color: var(--bg-color-on-items);
+    box-shadow: 0px 0px 5px 0px var(--bg-color-on-items);    
 }
 
 .postcardfirsthalf{

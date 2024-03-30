@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import PostsWidget from 'scenes/Widgets/PostsWidget'
 import FriendListWidget from 'scenes/Widgets/FriendListWidget'
 import { Navigate, useParams } from 'react-router-dom'
-
+import 'scenes/HomePage/HomePage.css'
 
 
 const ProfilePage = () => {
@@ -42,7 +42,7 @@ const ProfilePage = () => {
   return (
     <div>
       <NavBar/>
-    <div style={{display:'grid',gridTemplateColumns: '1fr 1fr 1fr',gap:'30px'}}>
+    <div className='maincontent'>
     <UsersWidget userId={userid} picturepath={user.picturepath} />
     <div style={{height:'fit-content'}}>
     {/* <MyPostWidgets picturepath={user.picturepath}/> */}

@@ -13,13 +13,11 @@ export const createPost= async (req,res)=>{
         const filenamerandstring=uuid4();
         if(req.file)
         {   
-            console.log(req.file);
             const dirname=path.dirname(req.file.path);
             const ext=(req.file.originalname).split('.')[1];
             picturepath=`assets/${filenamerandstring}.${ext}`;
             fs.renameSync(`${req.file.path}`,`${dirname}/${filenamerandstring}.${ext}`);
         }
-    console.log(user,picturepath);
         const newPost = new Post({
             userid,
             firstname: user.firstname,

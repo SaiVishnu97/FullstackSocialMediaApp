@@ -10,12 +10,14 @@ import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import {  useDispatch, useSelector } from 'react-redux';
 import { setLogout } from 'state';
 import { useNavigate } from 'react-router-dom';
+import { useTheme } from 'ModeContext';
 
 const NavBar = () => {
-
+  const {toogleTheme}=useTheme();
   const user = useSelector((state) => state.user);
   const dispatch=useDispatch();
   const navigate=useNavigate();
+
   if(user)
   var fullname = `${user.firstname} ${user.lastname}`;
   else
@@ -28,7 +30,7 @@ const NavBar = () => {
      <Searchahead/>
       </div>
       <div className='NavBarflex-2'>
-        <LightModeIcon sx={{ fontSize:'30px' }}/>
+        <LightModeIcon sx={{ fontSize:'30px',cursor:'pointer' }} onClick={()=>toogleTheme()}/>
         <MessageIcon/>
         <NotificationsIcon/>
         <div style={{fontSize:'medium',fontWeight:'700'}}>{fullname}</div>

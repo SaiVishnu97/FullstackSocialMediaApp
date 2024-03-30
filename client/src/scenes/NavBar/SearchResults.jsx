@@ -11,7 +11,7 @@ const SearchResults = ({results,selectItem,index}) => {
               touchthetext='highlight'
             else
               touchthetext='';
-            return (<div className={`dataItem ${touchthetext}`} onClick={()=>{selectItem(val.fullname)}} >{val.fullname}</div>)})}
+            return (<div className={`dataItem ${touchthetext}`} onClick={()=>{selectItem(val)}} >{val.fullname}</div>)})}
     </div>
   )
 }

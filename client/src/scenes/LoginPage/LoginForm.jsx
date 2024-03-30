@@ -39,7 +39,6 @@ const Form = ({setPageLogin}) => {
             'Content-Type': 'application/json',
           },
         });
-        console.log(response);
         actions.resetForm();
         dispatch(setLogin({user:response.data.user,token:response.data.token}));
         if(response)

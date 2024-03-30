@@ -19,7 +19,7 @@ const useFetchPromise = (token,isSelected) => {
         setResults(data.resarrnames);
       }catch(error)
       {
-        if(error.message.split(' ').includes('signal'))
+        if(error.message.split(' ').includes('aborted'))
            return;
         console.log(error.message);
         alert('Error while pattern matching');

@@ -55,7 +55,7 @@ const MyPostWidgets = ({picturepath}) => {
           value={post}
           sx={{
             width: "70%",
-            backgroundColor: 'rgb(240,240,240)',
+            backgroundColor: 'var(--bg-color)',
             borderRadius: "2rem",
             padding: "1rem 2rem"}}/>
         </div>
@@ -78,7 +78,7 @@ const MyPostWidgets = ({picturepath}) => {
             aria-label="upload picture" 
             component="span"
           >
-          <ImageIcon  sx={{ fontSize: 30 }}/>
+          <ImageIcon  sx={{ fontSize: 30,color:'var(--text-color)' }}/>
           </IconButton>
         </label>
        {image&&<Button 
@@ -91,7 +91,7 @@ const MyPostWidgets = ({picturepath}) => {
         <Button 
           variant="contained" 
           onClick={handlePost}
-          sx={{width:'100px'}}
+          sx={{width:'100px',color:'var(--text-color)' }}
           disabled={!(post||image)}
         >
           POST

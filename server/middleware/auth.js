@@ -13,12 +13,11 @@ export const verifyToken= async(req,res,next)=>
             token=token.slice(7,token.length).trimLeft();
         
         const verified=jwt.verify(token,process.env.JWT_SECRET);
-        console.log(verified);
         req.user=verified;
         next();
     }catch(err)
     {
-       res.status(500).json({ error: err.message });
+       res.status(401).json({ error: err.message });
     }
     
 }

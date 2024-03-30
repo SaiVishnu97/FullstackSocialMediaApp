@@ -2,24 +2,9 @@ import React from 'react'
 import { useDispatch ,useSelector} from 'react-redux'
 import Friend from 'components/Friend';
 import { setFriends } from 'state';
-const friendwidgetstyle={
-    width: '350px',    
-    height: '300px',
-    boxSizing: 'content-box',
-    borderRadius: '10px',
-    backgroundColor: 'rgb(255,255,255)',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginRight: '70px',
-    marginTop: '30px',
-}
-const friendcss={
-    overflowY: 'scroll',
-    height: '200px',
-    marginTop: '30px',
-    width :'300px'
-}
+import './Friends.css'
+
+
 const FriendListWidget = ({userid,isAnotherUser=false}) => {
     const dispatch=useDispatch();
     const token = useSelector((state) => state.token);
@@ -50,17 +35,17 @@ const FriendListWidget = ({userid,isAnotherUser=false}) => {
     setFunctionFriends();
     },[friends.length,userid])
   return (
-    <div style={friendwidgetstyle}>
+    <div className='friendwidgetstyle'>
 
         <h5 style={{marginTop:'10px'}}>FriendList</h5>
         
-        {isAnotherUser&&<div style={friendcss} >
+        {isAnotherUser&&<div className='friendcss' >
             {otheruserfriends.map((friend)=>{
           return  (<Friend key={friend._id} _id={userid} token={token} friendid={friend._id} subtitle={friend.location} 
             name={`${friend.firstname} ${friend.lastname}`} userpicturepath={friend.picturepath} isAnotherUser={isAnotherUser}/>);
         })}
         </div>}
-        {!isAnotherUser&&<div style={friendcss} >
+        {!isAnotherUser&&<div className='friendcss' >
         {friends.map((friend)=>{
           return  (<Friend key={friend._id} _id={userid} token={token} friendid={friend._id} subtitle={friend.location} 
             name={`${friend.firstname} ${friend.lastname}`} userpicturepath={friend.picturepath}  />);

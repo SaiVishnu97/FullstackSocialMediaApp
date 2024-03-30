@@ -4,20 +4,22 @@
     margin-top: 30px;
     display: flex;
     margin-left: 30px;
-    background-color: rgb(255,255,255);
     flex-direction: column;
     justify-content: flex-start;
     padding-left: 20px;
     padding-right: 20px;
     box-sizing: content-box;
     border-radius: 10px;
+    color: var(--text-color);
+    background-color: var(--bg-color-on-items);
+    box-shadow: 0px 0px 5px 0px var(--bg-color-on-items);
 }
 
 .userdp{
     display: flex;
     justify-content: space-around;
     padding: 20px; 
-    height: 70px;
+    height: 120px;
     border-bottom: 1px solid #525151;
 
 }
@@ -34,6 +36,6 @@ img{
     justify-content: space-around;
     align-items: flex-start;
     padding: 15px; 
-    height: 70px;
+    height: 100px;
     border-bottom: 1px solid #525151;
 }

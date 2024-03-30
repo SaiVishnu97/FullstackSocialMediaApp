@@ -1,3 +1,22 @@
-body{
-  background-color: rgb(246,246,246);
+[data-theme="light"] {
+  --bg-color: rgb(240,240,240);
+  --text-color: #333333;
+  --heading-color: #444444;
+  --bg-color-on-items: #ffffff;
+}
+
+/* Dark mode styles */
+[data-theme="dark"] {
+  --bg-color: #333333;
+  --text-color: #ffffff;
+  --heading-color: #dddddd;
+  --bg-color-on-items: #000000;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: Rubik, sans-serif;
+font-size: 13.7143px;
+font-weight: 400
 }

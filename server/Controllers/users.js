@@ -90,7 +90,6 @@ export const userPatternMatching= async (req,res)=>
              }
         })
         res.status(200).json({resarrnames: resarrnames});
-        console.log(resarrnames);
     }catch(err)
     {
         res.status(404).json({message: err.message})

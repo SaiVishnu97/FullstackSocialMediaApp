@@ -15,9 +15,10 @@ const Searchahead = () => {
   const [index,setIndex]=useState(0);
   const inputRef=useRef(null);
   const selectItem=(val)=>{
-    setQuery(val);
+    setQuery(val.fullname);
     setIsSelected(true);
     inputRef.current.focus();
+    navigate(`/profile/${val._id}`);
 }
   const keyEvents=(event)=>{
     if(event.keyCode===40&&results)
@@ -43,7 +44,7 @@ const Searchahead = () => {
           <InputBase ref={inputRef} 
           placeholder="Search..." sx={{
             width: "70%",
-            backgroundColor: 'rgb(240,240,240)',
+            backgroundColor: 'var(--bg-color)',
             borderRadius: "2rem",
             padding: "1rem 2rem"}} value={query} onChange={(event)=>{setQuery(event.target.value);
             if(isSelected)
