@@ -1,0 +1,15 @@
+.maincontent
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+}
+
+@media (max-width: 1000px) {
+    .maincontent
+    {
+        display: flex ;
+        flex-direction: column;
+        align-items: center;
+    }
+}
