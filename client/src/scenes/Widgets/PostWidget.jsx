@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import './PostWidget.css'
 import Friend from 'components/Friend';
 import { setPost } from 'state';
+import { debounce } from 'lodash';
+
 const PostWidget = ({
     postid,
     postuserid,
@@ -28,7 +30,7 @@ const PostWidget = ({
     const isLiked = Boolean(likes[loggedInUserId]);
     const likeCount = Object.keys(likes).length;
     
-    const patchLike= async()=>{
+    const patchLike=debounce(async()=>{
       try {
         console.log(loggedInUserId);
         const response=await fetch(`${process.env.REACT_APP_BACKEND_URL}/posts/${postid}/like`,{
@@ -47,7 +49,7 @@ const PostWidget = ({
         alert('Oops something went wrong when you are liking the post',error.message);
       }
      
-    }
+    },500);
 
   return (
     <div className='postcard'>

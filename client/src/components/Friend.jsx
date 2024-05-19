@@ -1,17 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { PersonAddOutlined, PersonRemoveOutlined } from "@mui/icons-material";
 import { Typography,IconButton } from '@mui/material';
 import { useSelector,useDispatch } from 'react-redux';
 import { setFriends } from 'state';
+import { debounce } from 'lodash';
+
 import { useNavigate } from 'react-router-dom';
+
 
 const Friend = ({friendid,subtitle,name,userpicturepath,_id,token,isAnotherUser}) => {
 
     const dispatch=useDispatch();
     const navigate=useNavigate();
+    
     const friends=useSelector((state)=>state.user.friends);
     const isFriend = friends.find((friend) => friend._id === friendid);
-    const patchFriend= async ()=>{
+    const patchFriend=debounce(async ()=>{
+      try{
         const response= await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${_id}/${friendid}`,{
             method: "PATCH",
             headers: {
@@ -21,11 +26,17 @@ const Friend = ({friendid,subtitle,name,userpicturepath,_id,token,isAnotherUser}
         });
         const formattedfriends=await response.json();
         dispatch(setFriends({friends:formattedfriends}));
-    }
+      }
+      catch(err)
+      {
+        console.log(err)
+      }
+    },500);
     const handleFriendClick=(event)=>
     {
       navigate(`/profile/${friendid}`);
     }
+    
   return (
        <div className='postcardfirsthalf' onClick={handleFriendClick}>
             <img src={`${process.env.REACT_APP_BACKEND_URL}/${userpicturepath}`}></img>
