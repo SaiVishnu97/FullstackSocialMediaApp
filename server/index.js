@@ -40,6 +40,7 @@ const storage =multer.diskStorage({
         cb(null,"public/assets");
     },
     filename: (req,file,cb)=>{
+        file.originalname=Date.now().toString()+file.originalname;
         cb(null,file.originalname);
     }
 });

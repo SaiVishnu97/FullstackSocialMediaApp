@@ -1,9 +1,6 @@
 import jwt from "jsonwebtoken";
 import bcrypt from 'bcrypt';
 import User from '../models/user.js'
-import {v4 as uuid4} from 'uuid'
-import fs from 'fs'
-import path from "path";
 
 export const register=async (req,res)=>
 {
@@ -20,12 +17,8 @@ export const register=async (req,res)=>
 
     const salt= await bcrypt.genSalt();
     const hashedpassword=await bcrypt.hash(password,salt);
-    const filenamerandstring=uuid4();
     if(req.file){
-    const dirname=path.dirname(req.file.path);
-    const ext=(req.file.originalname).split('.')[1];
-    var picturepath=`assets/${filenamerandstring}.${ext}`;
-    fs.renameSync(`${req.file.path}`,`${dirname}/${filenamerandstring}.${ext}`);
+    var picturepath=`assets/${req.file.originalname}`;
     }
     const newUser=new User({
         firstname,
