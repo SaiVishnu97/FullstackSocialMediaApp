@@ -43,7 +43,7 @@ const ProfilePage = () => {
     <div>
       <NavBar/>
     <div className='maincontent'>
-    <UsersWidget userId={userid} picturepath={user.picturepath} />
+    <UsersWidget userId={userid} picturepath={user.picturepath} sameuser={true}/>
     <div style={{height:'fit-content'}}>
     {/* <MyPostWidgets picturepath={user.picturepath}/> */}
     <PostsWidget userid={userid} isProfile={true}/>
