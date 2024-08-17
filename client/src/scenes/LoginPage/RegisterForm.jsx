@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import './Form.css'; // Importing the CSS file for styling
 import { validateSchemaRegister } from './YupValidation.js';
 import axios from 'axios';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 const initialValues = {
   firstname: '',
@@ -23,8 +25,10 @@ const errorText=(formik,inputfield)=>{
 }
 
 const Form = ({setPageLogin}) => {
+  const [loading,setLoading]= useState(false);
   const onSubmit = async (values, actions) => {
     try {
+      setLoading(true);
       const formData = new FormData();
       formData.append('firstname', values.firstname);
       formData.append('lastname', values.lastname);
@@ -48,6 +52,10 @@ const Form = ({setPageLogin}) => {
     } catch (error) {
       console.error('Error:', error);
       alert('Registration failed. Please try again.');
+    }
+    finally
+    {
+      setLoading(false)
     }
   };
   const formik = useFormik({
@@ -123,7 +131,7 @@ const Form = ({setPageLogin}) => {
                 </div>
 
                 <div className="d-flex justify-content-center mb-4">
-                  <button type='submit' className="btn btn-primary">Register</button>
+                  <button type='submit' className="btn btn-primary">{loading?<CircularProgress color="inherit"></CircularProgress>:'Register'}</button>
                 </div>
                 <small>Already have an account click here for <a style={{color:'blue',fontSize:'large',textDecoration:'underline'}} onClick={()=>setPageLogin(true)}>Login</a>
 </small>

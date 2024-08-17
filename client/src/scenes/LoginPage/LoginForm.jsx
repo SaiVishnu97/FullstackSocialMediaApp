@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import './Form.css'; // Importing the CSS file for styling
 import { validateSchemaLogin } from './YupValidation.js';
@@ -6,6 +6,8 @@ import axios from 'axios';
 import {  useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setLogin } from 'state';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 const initialValues = {
   email: '',
@@ -25,8 +27,10 @@ const Form = ({setPageLogin}) => {
 
   const navigate=useNavigate();
   const dispatch=useDispatch();
+  const [loading,setLoading]=useState(false)
     const onSubmit = async (values, actions) => {
       try {
+        setLoading(true)
         const formData = {
           email:values.email,
           password:values.password
@@ -56,6 +60,9 @@ const Form = ({setPageLogin}) => {
           console.error('Error:', error);
           alert('Login failed. Please try again.');
         }
+      }
+      finally{
+        setLoading(false);
       }
     };
     const formik = useFormik({
@@ -87,7 +94,7 @@ const Form = ({setPageLogin}) => {
                   <input type='hidden' name='navigate' value={navigate} />
 
                   <div className="d-flex justify-content-center mb-4">
-                    <button type='submit' className="btn btn-primary">Login</button>
+                    <button type='submit' className="btn btn-primary">{loading?<CircularProgress color="inherit"></CircularProgress>:'Login'}</button>
                   </div>
                   <small>Didn't have an account click here for </small>
                   <a style={{color:'blue',fontSize:'large', textDecoration:'underline'}} onClick={()=>setPageLogin(false)}>SignUp</a>
